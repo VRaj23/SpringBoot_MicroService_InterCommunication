@@ -24,17 +24,17 @@ public class Customer {
 	@GeneratedValue(generator="customerIdGenerator")
 	private long id;
 	private String name;
-	private double creditLimit;
+	private double balance;
 	
 	
 	public Customer() {}
 
 
-	public Customer(long id, String name, double creditLimit) {
+	public Customer(long id, String name, double balance) {
 		super();
 		this.id = id;
 		this.setName(name);
-		this.creditLimit = creditLimit;
+		this.balance = balance;
 	}
 
 
@@ -48,13 +48,13 @@ public class Customer {
 	}
 
 
-	public double getCreditLimit() {
-		return creditLimit;
+	public double getBalance() {
+		return balance;
 	}
 
 
-	public void setCreditLimit(double creditLimit) {
-		this.creditLimit = creditLimit;
+	public void setBalance(double balance) {
+		this.balance = balance;
 	}
 
 

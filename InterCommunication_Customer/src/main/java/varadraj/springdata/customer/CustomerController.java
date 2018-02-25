@@ -29,4 +29,22 @@ public class CustomerController {
 	public void deleteCustomer(@PathVariable long id) {
 		customerService.deleteCustomer(id);
 	}
+	
+	@RequestMapping(value="/orderValidation",method=RequestMethod.POST)
+	public boolean validateOrder(@RequestBody CustomerOrderValidation cov) {
+		System.out.println("Request Received for Order Validaton\n"+cov.getCustomerID()+"\n"+cov.getOrderValue());//TODO
+		long custID = cov.getCustomerID();
+		if(customerService.customerExists(custID) == false)
+			return false;
+		else {
+			double newBalance = customerService.getBalance(cov.getCustomerID())-cov.getOrderValue();
+			if(newBalance >= 0) {
+				customerService.updateBalance(cov.getCustomerID(), newBalance);
+				return true;
+			}
+			else
+				return false;
+		}
+	}
+
 }

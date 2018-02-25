@@ -25,4 +25,20 @@ public class CustomerService {
 	public void deleteCustomer(long id) {
 		customerRepo.delete(id);
 	}
+	
+	public double getBalance(long id) {
+		return customerRepo.findOne(id).getBalance();
+	}
+	
+	public void updateBalance(long id, double balance) {
+		Customer temp = customerRepo.findOne(id);
+		temp.setBalance(balance);
+		customerRepo.save(temp);
+	}
+	
+	public boolean customerExists(long id) {
+		if (customerRepo.findOne(id)==null)
+			return false;
+		return true;
+	}
 }
